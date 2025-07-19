@@ -1,0 +1,70 @@
+    <!-- This is how we can inherit the templates in flask -->
+{% extends 'base.html' %}
+{% block title %} Home {% endblock title %}
+{% block body %}
+      <!-- Form Start -->
+
+      <div class="container my-5">
+        <h2>Add a ToDo</h2>
+        <form action = '/' method = 'POST'>
+            <div class="mb-3">
+              <label for="title" class="form-label">TO DO Title</label>
+              <input type="text" class="form-control" name = "title" id="title" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+              <label for="desc" class="form-label">TO DO Description</label>
+              <input type="text" class="form-control" name = "desc" id="desc">
+            </div>
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div>
+            <button type="submit" class="btn btn-outline-dark btn-sm mx-1">Submit</button>
+          </form>
+
+      </div>
+      <!-- Form Ends -->
+
+      <!-- Table Starts Here -->
+
+      <div class="container my-5">
+        <h2>Your Todos</h2>
+       
+        <!-- This is how we use python if else in HTML -->
+        {% if allTodo|length == 0 %}
+        <div class="alert alert-info" role="alert">
+          No Info Available, Add your first Todos now!
+        </div>
+        
+        {% else %}
+        <table class="table table-dark table-striped">
+            <thead>
+              <tr>
+                <th scope="col">S No.</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Time</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- This is how we use python for loop in html -->
+              {% for todo in allTodo %}
+                  <tr>
+                    <th scope="row">{{loop.index}}</th>
+                    <td>{{todo.title}}</td>
+                    <td>{{todo.desc}}</td>
+                    <td>{{todo.date_created}}</td>
+                    <td>
+                      <a href="/update/{{todo.rno}}" type="button" class="btn btn-outline-info btn-sm mx-1">Update</a>
+                      <a href="/delete/{{todo.rno}}" type="button" class="btn btn-outline-info  btn-sm mx-1">Delete</a></td>
+                  </tr>
+              {% endfor %}
+              {% endif %}
+            </tbody>
+          </table>
+      </div>
+
+      <!-- Table Ends Here -->
+
+{% endblock body %}
