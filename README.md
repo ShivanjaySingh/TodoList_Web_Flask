@@ -3,7 +3,8 @@ A simple Flask-based ToDo List web app with full **CRUD** (Create, Read, Update,
 
 You can create virtual environment 
   Use this commands to install virtual environment 
-    pip install virtualenv virtaulenv env
+    pip install virtualenv,
+    virtaulenv env
 
 Now activating virtaul enviornment 
   Use this command to activate 
